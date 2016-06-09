@@ -2,68 +2,81 @@
 /*
  * kirbytag plyrtag
  * implements html syntax for plyr video, vimeo & youtube player
- *
+ * add plyr css and js and
  * call plyr.setup(); to initialize videos
+ *
+ * syntax:
+ * (plyr: video mp4: /path/to/video.mp4 webm: /path/to/video.webm)
+ * (plyr: VIMEOID)
+ * (plyr: YOUTUBEID)
  *
  * copyright: Dominik Pschenitschn | pschen.de
  * license: http://www.gnu.org/licenses/gpl-3.0.txt GPLv3 License
  *
  */
- kirbytext::$tags['plyrvideo'] = array(
-   'attr' => array(
-     'h264',
-     'webm'
-   ),
-   'html' => function($tag) {
-     $source = $tag->attr('plyrvideo');
+ kirbytext::$tags['plyr'] = array(
+  'attr' => array(
+    'poster',
+    'hls',
+    'mp4',
+    'webm',
+    'id'
+  ),
+  'html' => function($tag) {
 
-     $baseurl =  url('/video/');
-     $posterurl = $baseurl . urlencode($source) . '.png';
+    $type = $tag->attr('plyr');
 
+    // check if html5video, youtube or vimeo
+    if (strtolower($type) === 'video') {
+      // is html5video
+      $baseurl =  url('/video/');
 
-     if ($tag->attr('h264') === null || strtolower($tag->attr('h264')) === 'true' ) {
-       $mp4url = $baseurl . urlencode($source) . '.mp4';
-       $mp4source = '<source src="' . $mp4url . '" type="video/mp4">';}
-     else {
-       $mp4source = "";}
+      if (strtolower($tag->attr('mp4')) !== '') {
+        $mp4source = $tag->attr('mp4');
+        $mp4url = $baseurl . urlencode($mp4source);
+        $mp4source = '<source src="' . $mp4url . '" type="video/mp4">';
+      } else {
+        $mp4source = "";
+      }
 
-     if ($tag->attr('webm') === null || strtolower($tag->attr('webm')) === 'true' ) {
-       $webmurl = $baseurl . urlencode($source) . '.webm';
-       $webmsource = '<source src="' . $webmurl . '" type="video/webm">';}
-     else {
-       $webmsource = "";}
+      if (strtolower($tag->attr('webm')) !== '') {
+        $mp4source = $tag->attr('mp4');
+        $webmurl = $baseurl . urlencode($mp4source);
+        $webmsource = '<source src="' . $webmurl . '" type="video/webm">';}
+      else {
+        $webmsource = "";
+      }
 
-     if (file_exists($source . '.png')) {
-       $postersource = 'poster="' . $posterurl . '"';
-     } else {
-       $postersource = '';
-     }
+      $poster = $tag->attr('poster');
+      if (file_exists($baseurl . urlencode($poster))) {
 
+        $posterurl = $baseurl . urlencode($poster);
+        $postersource = 'poster="' . $posterurl . '"';
+      } else {
+        $postersource = '';
+      }
 
-     return '<video controls="controls" ' . $postersource . '>' .
-       $mp4source .
-       $webmsource .
-       '</video>';
-
-   }
+      return '<video controls="controls" ' . $postersource . '>' .
+        $hlssource .
+        $mp4source .
+        $webmsource .
+        'Dein Browser kann HTML5-Video nicht. Nimm eine aktuelle Version. Your browser does not support the video tag, choose an other browser.' .
+        '</video>';
+    } else {
+      // check if youtube id
+      // https://webapps.stackexchange.com/questions/54443/format-for-id-of-youtube-video/54448#54448
+      // http://thisinterestsme.com/check-see-http-resource-exists-php/
+      // https://stackoverflow.com/questions/29166402/verify-if-video-exist-with-youtube-api-v3
+      $headers = get_headers('https://www.youtube.com/oembed?format=json&url=http://www.youtube.com/watch?v=' . $type);
+      if(is_array($headers) ? preg_match('/^HTTP\\/\\d+\\.\\d+\\s+2\\d\\d\\s+.*$/',$headers[0]) : false) {
+        // is youtube
+        $videoID = $type;
+        return '<div data-type="youtube" data-video-id="' . $videoID  . '"></div>';
+      } else {
+        // should be vimeo
+        $videoID = $type;
+        return '<div data-type="vimeo" data-video-id="' . $videoID  . '"></div>';
+      }
+    }
+  }
  );
-
-kirbytext::$tags['plyrvimeo'] = array(
-  'attr' => array(
-    'options'
-  ),
-  'html' => function($tag) {
-    $videoID = $tag->attr('plyrvimeo');
-    return '<div data-type="vimeo" data-video-id="' . $videoID  . '"></div>';
-  }
-);
-
-kirbytext::$tags['plyryoutube'] = array(
-  'attr' => array(
-    'options'
-  ),
-  'html' => function($tag) {
-    $videoID = $tag->attr('plyryoutube');
-    return '<div data-type="youtube" data-video-id="' . $videoID  . '"></div>';
-  }
-);
