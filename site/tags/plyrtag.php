@@ -2,15 +2,9 @@
 /*
  * kirbytag plyrtag
  * implements html syntax for plyr video, vimeo & youtube player
- * add plyr css and js and
- * call plyr.setup(); to initialize videos
  *
- * syntax:
- * (plyr: video mp4: /path/to/video.mp4 webm: /path/to/video.webm)
- * (plyr: VIMEOID)
- * (plyr: YOUTUBEID)
- *
- * copyright: Dominik Pschenitschn | pschen.de
+ * by Dominik Pschenitschni http://pschen.de) | https://github.com/dpschen
+ * based on kirbytag-html5video https://github.com/jbeyerstedt/kirby-kirbytag-html5video by Jannik Beyerstedt
  * license: http://www.gnu.org/licenses/gpl-3.0.txt GPLv3 License
  *
  */
@@ -31,17 +25,21 @@
       // is html5video
       $baseurl =  url('/video/');
 
+      if (strtolower($tag->attr('hls')) !== '') {
+        $hlsurl = $baseurl . urlencode($tag->attr('hls'));
+        $hlssource = '<source src="' . $hlsurl . '" type="application/x-mpegurl">';}
+      else {
+        $hlssource = "";}
+
       if (strtolower($tag->attr('mp4')) !== '') {
-        $mp4source = $tag->attr('mp4');
-        $mp4url = $baseurl . urlencode($mp4source);
+        $mp4url = $baseurl . urlencode($tag->attr('mp4'));
         $mp4source = '<source src="' . $mp4url . '" type="video/mp4">';
       } else {
         $mp4source = "";
       }
 
       if (strtolower($tag->attr('webm')) !== '') {
-        $mp4source = $tag->attr('mp4');
-        $webmurl = $baseurl . urlencode($mp4source);
+        $webmurl = $baseurl . urlencode($tag->attr('webm'));
         $webmsource = '<source src="' . $webmurl . '" type="video/webm">';}
       else {
         $webmsource = "";
@@ -60,7 +58,7 @@
         $hlssource .
         $mp4source .
         $webmsource .
-        'Dein Browser kann HTML5-Video nicht. Nimm eine aktuelle Version. Your browser does not support the video tag, choose an other browser.' .
+        'Dein Browser unterstützt kein HTML5 Video. Bitte verwende eine aktuelle Version.' .
         '</video>';
     } else {
       // check if youtube id
