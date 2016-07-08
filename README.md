@@ -35,17 +35,19 @@ It is as well possible to embed a YouTube or Vimeo video via the video ID. Kirby
   
       Just use the attributes that you need.
       ```
-          (plyr: video hls: path/to/hlsFolder/hlsfile.m3u8 mp4: path/to/video.mp4 webm: path/to/video.webm poster: path/to/poster.jpg)
+      (plyr: video hls: path/to/hlsFolder/hlsfile.m3u8 mp4: path/to/video.mp4 webm: path/to/video.webm poster: path/to/poster.jpg)
       ```
       (I didn't test HLS yet, so I don't know if that works. Help in converting videos is welcome).
   
     * **YouTube videos**
+    
       ```
-          (plyr: YOUTUBEID)
+      (plyr: YOUTUBEID)
       ```
     * **Vimeo videos**
+    
       ```
-          (plyr: VIMEOID)
+      (plyr: VIMEOID)
       ```
   
   3. Call plyr.setup(); to initialize videos.
