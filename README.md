@@ -15,6 +15,7 @@ It is as well possible to embed a YouTube or Vimeo video via the video ID. Kirby
 ## Quick setup
   1. Add plyr css and js and as told in the [plyr readme.](https://github.com/Selz/plyr/blob/master/readme.md)
   Include the plyr.css stylsheet into your `<head>`.
+
   ```html
       <link rel="stylesheet" href="path/to/plyr.css">
   ```
