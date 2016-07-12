@@ -1,0 +1,16 @@
+{
+  "name": "kirby-plyrtag",
+  "version": "0.1.1",
+  "description": "kirbytag for plyr player",
+  "repository": {
+    "type": "git",
+    "url": "git+https://dpschen@github.com/dpschen/kirby-plyrtag.git"
+  },
+  "author": "Dominik Pschenitschni http://pschen.de",
+  "license": "http://www.gnu.org/licenses/gpl-3.0.txt GPLv3 License",
+  "bugs": {
+    "url": "https://github.com/dpschen/kirby-plyrtag/issues"
+  },
+  "homepage": "https://github.com/dpschen/kirby-plyrtag#readme",
+  "type": "kirby-tags"
+}
