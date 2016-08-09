@@ -1,4 +1,4 @@
-# kirby plyrtag | Kirbytag for [plyr player](https://github.com/Selz/plyrresponsive)
+# kirby plyrtag | Kirbytag for [plyr player](https://github.com/Selz/plyr)
 Implements html syntax for plyr video, vimeo & youtube player
 
 by Dominik Pschenitschni
