@@ -14,13 +14,14 @@
     'hls',
     'mp4',
     'webm',
-    'id'
+    'mp3',
+    'ogg'
   ),
   'html' => function($tag) {
 
     $type = $tag->attr('plyr');
 
-    // check if html5video, youtube or vimeo
+    // check if html5video, audio, youtube or vimeo
     if (strtolower($type) === 'video') {
       // is html5video
       $baseurl =  url('/video/');
@@ -29,7 +30,8 @@
         $hlsurl = $baseurl . urlencode($tag->attr('hls'));
         $hlssource = '<source src="' . $hlsurl . '" type="application/x-mpegurl">';}
       else {
-        $hlssource = "";}
+        $hlssource = "";
+      }
 
       if (strtolower($tag->attr('mp4')) !== '') {
         $mp4url = $baseurl . urlencode($tag->attr('mp4'));
@@ -60,6 +62,28 @@
         $webmsource .
         'Dein Browser unterstützt kein HTML5 Video. Bitte verwende eine aktuelle Version.' .
         '</video>';
+
+    } else if (strtolower($type) === 'audio') {
+      // is audio
+      if (strtolower($tag->attr('mp3')) !== '') {
+        $mp3url = urlencode($tag->attr('mp3'));
+        $mp3source = '<source src="' . $mp3url . '" type="audio/mp3">';
+      } else {
+        $mp3source = "";
+      }
+
+      if (strtolower($tag->attr('ogg')) !== '') {
+        $oggurl = urlencode($tag->attr('ogg'));
+        $oggsource = '<source src="' . $oggurl . '" type="audio/ogg">';
+      } else {
+        $oggsource = "";
+      }
+
+      return '<audio controls>' .
+        $mp3source .
+        $oggsource .
+      '</audio>'
+
     } else {
       // check if youtube id
       // https://webapps.stackexchange.com/questions/54443/format-for-id-of-youtube-video/54448#54448
