@@ -83,6 +83,7 @@
         $mp3source .
         $oggsource .
       '</audio>'
+      '</audio>';
 
     } else {
       // check if youtube id
