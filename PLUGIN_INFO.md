@@ -92,7 +92,7 @@ Just use the attributes that you need.
       <td><code>plyrtag.globalVideoFolder</code></td>
       <td>Boolean</td>
       <td><code>false</code></td>
-      <td>Toggles if your video files should be stored in a folder named ```video``` in your kirby root folder..</td>
+      <td>Toggles if your video files should be stored in a folder named <code>video</code> in your kirby root folder..</td>
     </tr>
     <tr>
       <td><code>plyrtag.globalVideoFolderName</code></td>
@@ -119,7 +119,7 @@ Just use the attributes that you need.
       <td><code>plyrtag.globalAudioFolder</code></td>
       <td>Boolean</td>
       <td><code>false</code></td>
-      <td>Toggles if your audio files should be stored in a folder named ```audio``` in your kirby root folder..</td>
+      <td>Toggles if your audio files should be stored in a folder named <code>audio</code> in your kirby root folder..</td>
     </tr>
     <tr>
       <td><code>plyrtag.globalAudioFolderName</code></td>
