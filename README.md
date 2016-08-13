@@ -15,7 +15,7 @@ It is as well possible to embed a YouTube or Vimeo video via the video ID. Kirby
 ## Quick setup
   1. Store the plyrtag.php in
     ```
-        site/tags/
+    site/tags/
     ```
 
   2. _(For self hosted media)_ Store your video / audio files in the content folder of your page.
@@ -24,7 +24,7 @@ It is as well possible to embed a YouTube or Vimeo video via the video ID. Kirby
     Include the plyr.css stylsheet into your `<head>`.
 
     ```html
-        <link rel="stylesheet" href="path/to/plyr.css">
+    <link rel="stylesheet" href="path/to/plyr.css">
     ```
 
     Include the plyr.js script before the closing ```</body>``` tag and then call ```plyr.setup();``` to initialize it.
