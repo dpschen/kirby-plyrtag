@@ -1,7 +1,7 @@
 <?php
 /*
  * kirbytag plyrtag
- * implements html syntax for plyr video, vimeo & youtube player
+ * implements html syntax for plyr video, audio vimeo & youtube player
  *
  * by Dominik Pschenitschni http://pschen.de) | https://github.com/dpschen
  * based on kirbytag-html5video https://github.com/jbeyerstedt/kirby-kirbytag-html5video by Jannik Beyerstedt

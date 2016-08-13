@@ -1,5 +1,5 @@
 # kirby plyrtag | Kirbytag for [plyr player](https://github.com/Selz/plyr)
-Implements html syntax for plyr video, vimeo & youtube player
+Implements html syntax for plyr video, audio, vimeo & youtube player
 
 by Dominik Pschenitschni
 [pschen.de](http://pschen.de) | [Github](https://github.com/dpschen)
