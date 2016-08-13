@@ -14,13 +14,14 @@ It is as well possible to embed a YouTube or Vimeo video via the video ID. Kirby
 
 ## Quick setup
   1. Store the plyrtag.php in
-    ```
+    ```html
     site/tags/
     ```
 
   2. _(For self hosted media)_ Store your video / audio files in the content folder of your page.
 
   3. Add plyr css and js and as told in the [plyr readme.](https://github.com/Selz/plyr/blob/master/readme.md)
+
     Include the plyr.css stylsheet into your `<head>`.
 
     ```html
@@ -34,38 +35,40 @@ It is as well possible to embed a YouTube or Vimeo video via the video ID. Kirby
     <script>plyr.setup();</script>
     ```
 
-  4. Add a kirbytag to your content-file (txt) at the point you want the video to be:  
+## Use tag
+Add a kirbytag to your content-file (txt) at the point you want the video to be:  
 
-    **Self hosted videos**
+### Self hosted videos
 
-    By default paths are relative to the current page folder (can be changed with [kirby options](#kirby_options)).
+By default paths are relative to the current page folder (can be changed with [kirby options](#kirby_options)).
 
-    ```
-    (plyr: video mp4: video.mp4 webm: video.webm hls: hlsFolder/hlsfile.m3u8 poster: poster.jpg)
-    ```
+```
+(plyr: video mp4: video.mp4 webm: video.webm hls: hlsFolder/hlsfile.m3u8 poster: poster.jpg)
+```
 
-    Just use the tag attributes that you need (eg. just ```mp4```, ```web``` and ```poster```).
+Just use the tag attributes that you need (eg. just ```mp4```, ```web``` and ```poster```).
 
-    (I didn't test HLS yet, so I don't know if that works. Help in converting videos is welcome).
+(I didn't test HLS yet, so I don't know if that works. Help in converting videos is welcome).
 
-    **Self hosted audios**
+### Self hosted audios
 
-    Just use the attributes that you need.
+Just use the attributes that you need.
 
-    ```
-    (plyr: audio mp3: audio.mp3 ogg: audio.ogg)
-    ```
+```
+(plyr: audio mp3: audio.mp3 ogg: audio.ogg)
+```
 
-    **YouTube videos**
+### YouTube videos
 
-    ```
-    (plyr: YOUTUBEID)
-    ```
-    **Vimeo videos**
+```
+(plyr: YOUTUBEID)
+```
 
-    ```
-    (plyr: VIMEOID)
-    ```
+### Vimeo videos
+
+```
+(plyr: VIMEOID)
+```
 
 ## Kirby options<a name="kirby_options"></a>
 
@@ -77,26 +80,26 @@ It is as well possible to embed a YouTube or Vimeo video via the video ID. Kirby
 ### Video Files
 Store your video files in a folder named ```video``` in your kirby root folder.
 
-```
+```php
 c::set('plyrtag.globalVideoFolder', true);
 ```
 
 If you want them to be in a different folder set:
 
-```
+```php
 c:set('plyrtag.globalVideoFolderName', 'myVideoFolder');
 ```
 
 ### Audio Files
 Store your audio files in a folder named ```audio``` in your kirby root folder.
 
-```
+```php
 c::set('plyrtag.globalAudioFolder', true);
 ```
 
 If you want them to be in a different folder set:
 
-```
+```php
 c:set('plyrtag.globalAudioFolderName', 'myAudioFolder');
 ```
 
