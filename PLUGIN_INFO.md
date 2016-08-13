@@ -76,31 +76,67 @@ Just use the attributes that you need.
 
 **Exclude this folder from dropbox-sync before you add any content to that folder! Or move the content temporary to another folder! Otherwise all the content in the excluded folder will be removed from the local directory (but not the server)**
 
-
 ### Video Files
-Store your video files in a folder named ```video``` in your kirby root folder.
+
+<table class="table" width="100%" id="fullscreen-options">
+  <thead>
+    <tr>
+      <th width="30%">Option</th>
+      <th width="10%">Type</th>
+      <th width="10%">Default</th>
+      <th width="50%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>plyrtag.globalVideoFolder</code></td>
+      <td>Boolean</td>
+      <td><code>false</code></td>
+      <td>Toggles if your video files should be stored in a folder named ```video``` in your kirby root folder..</td>
+    </tr>
+    <tr>
+      <td><code>plyrtag.globalVideoFolderName</code></td>
+      <td>String</td>
+      <td><code>video</code></td>
+      <td>Set a different name for the global video folder.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Audio Files
+
+<table class="table" width="100%" id="fullscreen-options">
+  <thead>
+    <tr>
+      <th width="30%">Option</th>
+      <th width="10%">Type</th>
+      <th width="10%">Default</th>
+      <th width="50%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>plyrtag.globalAudioFolder</code></td>
+      <td>Boolean</td>
+      <td><code>false</code></td>
+      <td>Toggles if your audio files should be stored in a folder named ```audio``` in your kirby root folder..</td>
+    </tr>
+    <tr>
+      <td><code>plyrtag.globalAudioFolderName</code></td>
+      <td>String</td>
+      <td><code>audio</code></td>
+      <td>Set a different name for the global audio folder.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Example configuration
 
 ```php
 c::set('plyrtag.globalVideoFolder', true);
-```
-
-If you want them to be in a different folder set:
-
-```php
-c:set('plyrtag.globalVideoFolderName', 'myVideoFolder');
-```
-
-### Audio Files
-Store your audio files in a folder named ```audio``` in your kirby root folder.
-
-```php
+c::set('plyrtag.globalVideoFolderName', 'myVideoFolder');
 c::set('plyrtag.globalAudioFolder', true);
-```
-
-If you want them to be in a different folder set:
-
-```php
-c:set('plyrtag.globalAudioFolderName', 'myAudioFolder');
+c::set('plyrtag.globalAudioFolderName', 'myAudioFolder');
 ```
 
 ## Todo:
