@@ -82,7 +82,6 @@
       return '<audio controls>' .
         $mp3source .
         $oggsource .
-      '</audio>'
       '</audio>';
 
     } else {
