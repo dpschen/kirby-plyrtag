@@ -10,67 +10,95 @@ This is an extension of kirbytext for the [kirby cms](getkirby.com), which adds 
 
 This extension can handle mp4 (h.264), webm and HTTP-live-streaming sources as well as a poster. You can select, which sources you have (for audio mp3 / ogg).
 
-It is as well possible to embed a YouTube or Vimeo video via the video ID. Kirby plyrtag automatically detects if the ID is from YouTube or Vimeo and includes. For this it is better to **enable caching** in kirby (because the detection takes some time).
+It is as well possible to embed a YouTube or Vimeo video via the video ID. Kirby plyrtag automatically detects if the ID is from YouTube or Vimeo and includes. For this it is better to [**enable caching**](https://getkirby.com/docs/developer-guide/advanced/caching) in kirby (because the detection takes some time).
 
 ## Quick setup
-  1. Add plyr css and js and as told in the [plyr readme.](https://github.com/Selz/plyr/blob/master/readme.md)
-  Include the plyr.css stylsheet into your `<head>`.
-
-  ```html
-      <link rel="stylesheet" href="path/to/plyr.css">
-  ```
-  2. Store the plyrtag.php in
+  1. Store the plyrtag.php in
     ```
         site/tags/
     ```
 
-  3. **Optional for self hosted videos:** Store your video files in a folder named ```video```
-    in your html-root (or change the `$baseurl` in plyrtag.php if you want a different folder).
-      * have a name for your video-files, e.g. "NAME"
-      * name and store it with this sceme:
+  2. _(For self hosted media)_ Store your video / audio files in the content folder of your page.
+
+  3. Add plyr css and js and as told in the [plyr readme.](https://github.com/Selz/plyr/blob/master/readme.md)
+    Include the plyr.css stylsheet into your `<head>`.
+
+    ```html
+        <link rel="stylesheet" href="path/to/plyr.css">
+    ```
+
+    Include the plyr.js script before the closing ```</body>``` tag and then call ```plyr.setup();``` to initialize it.
+
+    ```html
+    <script src="path/to/plyr.js"></script>
+    <script>plyr.setup();</script>
+    ```
 
   4. Add a kirbytag to your content-file (txt) at the point you want the video to be:  
 
-    * **Self hosted videos**
+    **Self hosted videos**
 
-      Just use the attributes that you need.
-      The all paths are relative to the ```video``` folder of step 3.
+    By default paths are relative to the current page folder (can be changed with [kirby options](#kirby_options)).
 
-      ```
-      (plyr: video hls: path/to/hlsFolder/hlsfile.m3u8 mp4: path/to/video.mp4 webm: path/to/video.webm poster: path/to/poster.jpg)
-      ```
+    ```
+    (plyr: video mp4: video.mp4 webm: video.webm hls: hlsFolder/hlsfile.m3u8 poster: poster.jpg)
+    ```
 
-      (I didn't test HLS yet, so I don't know if that works. Help in converting videos is welcome).
+    Just use the tag attributes that you need (eg. just ```mp4```, ```web``` and ```poster```).
 
-    * **Self hosted audios**
+    (I didn't test HLS yet, so I don't know if that works. Help in converting videos is welcome).
 
-      Just use the attributes that you need.
+    **Self hosted audios**
 
-      ```
-      (plyr: audio mp3: path/to/audio.mp3 ogg: path/to/audio.ogg)
-      ```
+    Just use the attributes that you need.
 
-    * **YouTube videos**
+    ```
+    (plyr: audio mp3: audio.mp3 ogg: audio.ogg)
+    ```
 
-      ```
-      (plyr: YOUTUBEID)
-      ```
-    * **Vimeo videos**
+    **YouTube videos**
 
-      ```
-      (plyr: VIMEOID)
-      ```
+    ```
+    (plyr: YOUTUBEID)
+    ```
+    **Vimeo videos**
 
-  3. Call plyr.setup(); to initialize videos.
+    ```
+    (plyr: VIMEOID)
+    ```
+
+## Kirby options<a name="kirby_options"></a>
+
+**Optional for self hosted files:** Store your media files in a separate folders, so you can prevent those huge files from being added to git or dropbox (by excluding them from the sync). Add options to your [kirby config file](https://getkirby.com/docs/developer-guide/configuration/options).
+
+**Exclude this folder from dropbox-sync before you add any content to that folder! Or move the content temporary to another folder! Otherwise all the content in the excluded folder will be removed from the local directory (but not the server)**
 
 
-## Why not store the video files in the content folder?
-The videos are stored in a separate folder, so you can prevent those huge files from being added to git or dropbox (by excluding the video folder from the sync).
+### Video Files
+Store your video files in a folder named ```video``` in your kirby root folder.
 
-**Exclude this folder from dropbox-sync before you add any content to that folder! Or move the content temporary to another folder! Otherwise alle the content in the excluded folder will be removed from the local directory (but not the server)**
+```
+c::set('plyrtag.globalVideoFolder', true);
+```
 
-## Why not do the same for audio files?
-Because audio files are usually much smaller then video files I thought it's alright to just add them in the content folder or where else you like them to be.
+If you want them to be in a different folder set:
+
+```
+c:set('plyrtag.globalVideoFolderName', 'myVideoFolder');
+```
+
+### Audio Files
+Store your audio files in a folder named ```audio``` in your kirby root folder.
+
+```
+c::set('plyrtag.globalAudioFolder', true);
+```
+
+If you want them to be in a different folder set:
+
+```
+c:set('plyrtag.globalAudioFolderName', 'myAudioFolder');
+```
 
 ## Todo:
 - [x] Add audio support (added in 0.2.0)
