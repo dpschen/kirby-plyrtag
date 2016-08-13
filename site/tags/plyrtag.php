@@ -24,33 +24,39 @@
     // check if html5video, audio, youtube or vimeo
     if (strtolower($type) === 'video') {
       // is html5video
-      $baseurl =  url('/video/');
+
+      // check if should use globalVideoFolder
+      if (c::get('plyrtag.globalVideoFolder', false) == true) {
+        $baseVideoUrl =  url(c::get('plyrtag.globalVideoFolderName', 'video') . '/');
+      } else {
+        $baseVideoUrl = $tag->page()->url() . '/';
+      }
 
       if (strtolower($tag->attr('hls')) !== '') {
-        $hlsurl = $baseurl . urlencode($tag->attr('hls'));
+        $hlsurl = $baseVideoUrl . urlencode($tag->attr('hls'));
         $hlssource = '<source src="' . $hlsurl . '" type="application/x-mpegurl">';}
       else {
         $hlssource = "";
       }
 
       if (strtolower($tag->attr('mp4')) !== '') {
-        $mp4url = $baseurl . urlencode($tag->attr('mp4'));
+        $mp4url = $baseVideoUrl . urlencode($tag->attr('mp4'));
         $mp4source = '<source src="' . $mp4url . '" type="video/mp4">';
       } else {
         $mp4source = "";
       }
 
       if (strtolower($tag->attr('webm')) !== '') {
-        $webmurl = $baseurl . urlencode($tag->attr('webm'));
+        $webmurl = $baseVideoUrl . urlencode($tag->attr('webm'));
         $webmsource = '<source src="' . $webmurl . '" type="video/webm">';}
       else {
         $webmsource = "";
       }
 
       $poster = $tag->attr('poster');
-      if (file_exists($baseurl . urlencode($poster))) {
+      if (file_exists($baseVideoUrl . urlencode($poster))) {
 
-        $posterurl = $baseurl . urlencode($poster);
+        $posterurl = $baseVideoUrl . urlencode($poster);
         $postersource = 'poster="' . $posterurl . '"';
       } else {
         $postersource = '';
@@ -65,15 +71,23 @@
 
     } else if (strtolower($type) === 'audio') {
       // is audio
+
+      // check if should use globalAudioFolder
+      if (c::get('plyrtag.globalAudioFolder', false) == true) {
+        $baseAudioUrl =  url(c::get('plyrtag.globalAudioFolderName', 'audio') . '/');
+      } else {
+        $baseAudioUrl = $tag->page()->url() . '/';
+      }
+
       if (strtolower($tag->attr('mp3')) !== '') {
-        $mp3url = urlencode($tag->attr('mp3'));
+        $mp3url = $baseAudioUrl . urlencode($tag->attr('mp3'));
         $mp3source = '<source src="' . $mp3url . '" type="audio/mp3">';
       } else {
         $mp3source = "";
       }
 
       if (strtolower($tag->attr('ogg')) !== '') {
-        $oggurl = urlencode($tag->attr('ogg'));
+        $oggurl = $baseAudioUrl. urlencode($tag->attr('ogg'));
         $oggsource = '<source src="' . $oggurl . '" type="audio/ogg">';
       } else {
         $oggsource = "";
