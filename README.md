@@ -18,7 +18,7 @@ It is as well possible to embed a YouTube or Vimeo video via the video ID. Kirby
     site/tags/
     ```
 
-  2. _(For self hosted media)_ Store your video / audio files in the content folder of your page.
+  2. __(Optional for self hosted media)__ Store your video / audio files in the content folder of your page.
 
   3. Add plyr css and js and as told in the [plyr readme.](https://github.com/Selz/plyr/blob/master/readme.md)
 
@@ -36,13 +36,13 @@ It is as well possible to embed a YouTube or Vimeo video via the video ID. Kirby
     ```
 
 ## Use tag
-Add a kirbytag to your content-file (txt) at the point you want the video to be:  
+Add a kirbytag to your content-file (txt) at the point you want the video to be.
 
-### Self hosted videos
+### For self hosted videos
 
 By default paths are relative to the current page folder (can be changed with [kirby options](#kirby_options)).
 
-```
+```mk
 (plyr: video mp4: video.mp4 webm: video.webm hls: hlsFolder/hlsfile.m3u8 poster: poster.jpg)
 ```
 
@@ -50,23 +50,23 @@ Just use the tag attributes that you need (eg. just ```mp4```, ```web``` and ```
 
 (I didn't test HLS yet, so I don't know if that works. Help in converting videos is welcome).
 
-### Self hosted audios
+### For self hosted audios
 
 Just use the attributes that you need.
 
-```
+```mk
 (plyr: audio mp3: audio.mp3 ogg: audio.ogg)
 ```
 
-### YouTube videos
+### For YouTube videos
 
-```
+```mk
 (plyr: YOUTUBEID)
 ```
 
-### Vimeo videos
+### For Vimeo videos
 
-```
+```mk
 (plyr: VIMEOID)
 ```
 
@@ -92,7 +92,7 @@ Just use the attributes that you need.
       <td><code>plyrtag.globalVideoFolder</code></td>
       <td>Boolean</td>
       <td><code>false</code></td>
-      <td>Toggles if your video files should be stored in a folder named <code>video</code> in your kirby root folder..</td>
+      <td>Toggles if your video files should be stored in a global video folder (default: <code>video</code>) in your kirby root folder.</td>
     </tr>
     <tr>
       <td><code>plyrtag.globalVideoFolderName</code></td>
@@ -119,7 +119,7 @@ Just use the attributes that you need.
       <td><code>plyrtag.globalAudioFolder</code></td>
       <td>Boolean</td>
       <td><code>false</code></td>
-      <td>Toggles if your audio files should be stored in a folder named <code>audio</code> in your kirby root folder..</td>
+      <td>Toggles if your audio files should be stored in a global audio folder (default: <code>audio</code>) in your kirby root folder.</td>
     </tr>
     <tr>
       <td><code>plyrtag.globalAudioFolderName</code></td>
@@ -135,6 +135,7 @@ Just use the attributes that you need.
 ```php
 c::set('plyrtag.globalVideoFolder', true);
 c::set('plyrtag.globalVideoFolderName', 'myVideoFolder');
+
 c::set('plyrtag.globalAudioFolder', true);
 c::set('plyrtag.globalAudioFolderName', 'myAudioFolder');
 ```
