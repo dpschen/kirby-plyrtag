@@ -13,27 +13,27 @@ This extension can handle mp4 (h.264), webm and HTTP-live-streaming sources as w
 It is as well possible to embed a YouTube or Vimeo video via the video ID. Kirby plyrtag automatically detects if the ID is from YouTube or Vimeo and includes. For this it is better to [**enable caching**](https://getkirby.com/docs/developer-guide/advanced/caching) in kirby (because the detection takes some time).
 
 ## Quick setup
-  1. Store the plyrtag.php in
-    ```html
-    site/tags/
-    ```
+1. Store the plyrtag.php in
+  ```html
+  site/tags/
+  ```
 
-  2. __(Optional for self hosted media)__ Store your video / audio files in the content folder of your page.
+2. __(Optional for self hosted media)__ Store your video / audio files in the content folder of your page.
 
-  3. Add plyr css and js and as told in the [plyr readme.](https://github.com/Selz/plyr/blob/master/readme.md)
+3. Add plyr css and js and as told in the [plyr readme.](https://github.com/Selz/plyr/blob/master/readme.md)
 
-    Include the plyr.css stylsheet into your `<head>`.
+  Include the plyr.css stylsheet into your `<head>`.
 
-    ```html
-    <link rel="stylesheet" href="path/to/plyr.css">
-    ```
+  ```html
+  <link rel="stylesheet" href="path/to/plyr.css">
+  ```
 
-    Include the plyr.js script before the closing ```</body>``` tag and then call ```plyr.setup();``` to initialize it.
+  Include the plyr.js script before the closing ```</body>``` tag and then call ```plyr.setup();``` to initialize it.
 
-    ```html
-    <script src="path/to/plyr.js"></script>
-    <script>plyr.setup();</script>
-    ```
+  ```html
+  <script src="path/to/plyr.js"></script>
+  <script>plyr.setup();</script>
+  ```
 
 ## Use tag
 Add a kirbytag to your content-file (txt) at the point you want the video to be.
