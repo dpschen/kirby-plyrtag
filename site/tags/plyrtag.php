@@ -28,7 +28,11 @@
       // check if should use globalVideoFolder
       if (c::get('plyrtag.globalVideoFolder', false) == true) {
         $globalVideoFolderName = c::get('plyrtag.globalVideoFolderName', 'video');
-        $baseVideoPath =  $tag->page()->site()->url() . url($globalVideoFolderName . '/');
+        if ($tag->page()->site()->languages()) { // multi-language site
+          $baseVideoPath = $tag->page()->site()->language()->url() . '/' . $globalVideoFolderName . '/';
+        } else { // single-language site
+          $baseVideoPath = $tag->page()->site()->url() . '/' . $globalVideoFolderName . '/';
+        }
       } else {
         $baseVideoPath = $tag->page()->url() . '/';
       }
@@ -76,7 +80,11 @@
       // check if should use globalAudioFolder
       if (c::get('plyrtag.globalAudioFolder', false) == true) {
         $globalAudioFolderName = c::get('plyrtag.globalAudioFolderName', 'audio');
-        $baseAudioPath =  $tag->page()->site()->url() . url($globalAudioFolderName . '/');
+        if ($tag->page()->site()->languages()) { // multi-language site
+          $baseAudioPath = $tag->page()->site()->language()->url() . '/' . $globalAudioFolderName . '/';
+        } else { // single-language site
+          $baseAudioPath = $tag->page()->site()->url() . '/' . $globalAudioFolderName . '/';
+        }
       } else {
         $baseAudioPath = $tag->page()->url() . '/';
       }
