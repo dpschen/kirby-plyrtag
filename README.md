@@ -1,3 +1,8 @@
+> **Warning**
+> [Archived] Outdated and not maintained. Use e.g. [stuymedova/kirby-plyr](https://github.com/stuymedova/kirby-plyr) instead
+
+------
+
 # kirby plyrtag | Kirbytag for [plyr player](https://github.com/Selz/plyr)
 Implements html syntax for plyr video, audio, vimeo & youtube player
 
